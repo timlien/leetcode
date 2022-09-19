@@ -3,15 +3,14 @@ package com.tingshulien.leetcode.sorting;
 public class InsertionSort {
 
     public static void sort(int[] nums) {
-        for (int i = 0; i < nums.length - 1; i++) {
-            int minIndex = i;
-            for (int j = i + 1; j < nums.length; j++) {
-                if (nums[j] < nums[minIndex]) {
-                    minIndex = j;
+        for (int i = 1; i < nums.length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (nums[j] > nums[j - 1]) {
+                    break;
                 }
-            }
 
-            swap(nums, i, minIndex);
+                swap(nums, j, j - 1);
+            }
         }
     }
 
