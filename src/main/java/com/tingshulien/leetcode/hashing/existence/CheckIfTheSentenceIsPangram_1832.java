@@ -1,4 +1,4 @@
-package com.tingshulien.leetcode.hashing;
+package com.tingshulien.leetcode.hashing.existence;
 
 import java.util.HashSet;
 import java.util.Set;
