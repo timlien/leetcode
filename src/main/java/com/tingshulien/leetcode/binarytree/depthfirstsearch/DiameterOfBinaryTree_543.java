@@ -1,4 +1,4 @@
-package com.tingshulien.leetcode.binarytree;
+package com.tingshulien.leetcode.binarytree.depthfirstsearch;
 
 import com.tingshulien.leetcode.utility.TreeNode;
 
