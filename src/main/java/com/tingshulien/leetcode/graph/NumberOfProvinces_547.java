@@ -19,15 +19,36 @@ import java.util.Map;
  */
 public class NumberOfProvinces_547 {
 
-    private Map<Integer, List<Integer>> graph = new HashMap<>();
+    private Map<Integer, List<Integer>> graph;
 
     private boolean[] seen;
 
     public int findCircleNum(int[][] isConnected) {
+        graph = buildGraph(isConnected);
+
         int size = isConnected.length;
+        seen = new boolean[size];
+
+        int ans = 0;
         for (int i = 0; i < size; i++) {
+            if (seen[i]) {
+                continue;
+            }
+
+            ans++;
+            dfs(i);
+        }
+
+        return ans;
+    }
+
+    private Map<Integer, List<Integer>> buildGraph(int[][] isConnected) {
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+
+        int height = isConnected.length;
+        for (int i = 0; i < height; i++) {
             graph.putIfAbsent(i, new ArrayList<>());
-            for (int j = i + 1; j < size; j++) {
+            for (int j = i + 1; j < height; j++) {
                 graph.putIfAbsent(j, new ArrayList<>());
                 if (isConnected[i][j] == 1) {
                     graph.get(i).add(j);
@@ -36,28 +57,16 @@ public class NumberOfProvinces_547 {
             }
         }
 
-        seen = new boolean[size];
-        int ans = 0;
-        for (int i = 0; i < size; i++) {
-            if (seen[i]) {
-                continue;
-            }
-
-            ans++;
-            seen[i] = true;
-            dfs(i);
-        }
-
-        return ans;
+        return graph;
     }
 
     private void dfs(int node) {
+        seen[node] = true;
         for (int neighbor : graph.get(node)) {
             if (seen[neighbor]) {
                 continue;
             }
 
-            seen[neighbor] = true;
             dfs(neighbor);
         }
     }
