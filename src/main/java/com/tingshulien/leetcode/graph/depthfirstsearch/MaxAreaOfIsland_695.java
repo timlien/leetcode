@@ -1,4 +1,4 @@
-package com.tingshulien.leetcode.graph;
+package com.tingshulien.leetcode.graph.depthfirstsearch;
 
 /**
  * <a href="https://leetcode.com/problems/max-area-of-island/description/">695. Max Area of Island</a>

@@ -1,4 +1,4 @@
-package com.tingshulien.leetcode.graph;
+package com.tingshulien.leetcode.graph.depthfirstsearch;
 
 import java.util.List;
 
