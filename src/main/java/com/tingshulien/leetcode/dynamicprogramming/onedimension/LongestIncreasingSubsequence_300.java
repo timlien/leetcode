@@ -1,4 +1,4 @@
-package com.tingshulien.leetcode.dynamicprogramming;
+package com.tingshulien.leetcode.dynamicprogramming.onedimension;
 
 import java.util.HashMap;
 import java.util.Map;
