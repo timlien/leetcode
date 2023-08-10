@@ -1,4 +1,4 @@
-package com.tingshulien.leetcode.linkedlist;
+package com.tingshulien.leetcode.linkedlist.fastandslowpointers;
 
 import com.tingshulien.leetcode.utility.ListNode;
 
