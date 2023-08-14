@@ -1,4 +1,4 @@
-package com.tingshulien.leetcode.linkedlist;
+package com.tingshulien.leetcode.linkedlist.reversing;
 
 import com.tingshulien.leetcode.utility.ListNode;
 

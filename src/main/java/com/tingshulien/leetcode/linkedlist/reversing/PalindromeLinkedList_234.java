@@ -1,4 +1,4 @@
-package com.tingshulien.leetcode.linkedlist;
+package com.tingshulien.leetcode.linkedlist.reversing;
 
 import com.tingshulien.leetcode.utility.ListNode;
 
@@ -14,34 +14,35 @@ public class PalindromeLinkedList_234 {
             return true;
         }
 
-        ListNode sentinel = new ListNode();
-        sentinel.next = head;
-
-        ListNode slow = sentinel;
-        ListNode fast = sentinel;
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
+        if (head.next.next == null) {
+            return head.val == head.next.val;
         }
 
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+        ListNode current = fast.next == null ? slow : slow.next;
         ListNode prev = null;
-        ListNode current = slow.next;
+        ListNode next;
         while (current != null) {
-            ListNode next = current.next;
+            next = current.next;
             current.next = prev;
             prev = current;
             current = next;
         }
 
-        slow = head;
-        fast = prev;
-        while (fast != null) {
-            if (slow.val != fast.val) {
+        while (prev != null) {
+            if (prev.val != head.val) {
                 return false;
             }
 
-            slow = slow.next;
-            fast = fast.next;
+            prev = prev.next;
+            head = head.next;
         }
 
         return true;
