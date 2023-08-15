@@ -1,4 +1,4 @@
-package com.tingshulien.leetcode.stack;
+package com.tingshulien.leetcode.stack.stringproblems;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
