@@ -1,4 +1,6 @@
-package com.tingshulien.leetcode.graph.depthfirstsearch;
+package com.tingshulien.leetcode.graph;
+
+import com.tingshulien.leetcode.utility.rank.Top;
 
 /**
  * <a href="https://leetcode.com/problems/find-the-town-judge/description/">997. Find the Town Judge</a>
@@ -14,6 +16,7 @@ package com.tingshulien.leetcode.graph.depthfirstsearch;
  * <p>
  * Return the label of the town judge if the town judge exists and can be identified, or return -1 otherwise.
  */
+@Top
 public class FindTheTownJudge_997 {
 
     public int findJudge(int n, int[][] trust) {
