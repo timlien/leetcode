@@ -1,6 +1,8 @@
 package com.tingshulien.leetcode.graph.depthfirstsearch;
 
+import com.tingshulien.leetcode.utility.rank.BelowAverage;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,54 +19,54 @@ import java.util.Map;
  * <p>
  * Given edges and the integers n, source, and destination, return true if there is a valid path from source to destination, or false otherwise.
  */
+@BelowAverage
 public class FindIfPathExistsInGraph_1971 {
 
     private Map<Integer, List<Integer>> graph;
 
-    private boolean[] seen;
+    private boolean [] seen;
+
+    private int destination;
 
     public boolean validPath(int n, int[][] edges, int source, int destination) {
-        graph = buildGraph(n, edges);
-        seen = new boolean[n];
-
-        return dfs(source, destination);
-    }
-
-    private Map<Integer, List<Integer>> buildGraph(int n, int[][] edges) {
-        Map<Integer, List<Integer>> graph = new HashMap<>();
-
-        for (int i = 0; i < n; i++) {
-            graph.putIfAbsent(i, new ArrayList<>());
-        }
+        this.graph = new HashMap<>();
+        this.seen = new boolean[n];
+        this.destination = destination;
 
         for (int[] edge : edges) {
-            int start = edge[0];
-            int end = edge[1];
-            graph.get(start).add(end);
-            graph.get(end).add(start);
+            if (!graph.containsKey(edge[0])) {
+                graph.put(edge[0], new ArrayList<>());
+            }
+
+            graph.get(edge[0]).add(edge[1]);
+
+            if (!graph.containsKey(edge[1])) {
+                graph.put(edge[1], new ArrayList<>());
+            }
+
+            graph.get(edge[1]).add(edge[0]);
         }
 
-        return graph;
+        return dfs(source);
     }
 
-    private boolean dfs(int source, int destination) {
-        boolean valid = false;
-
-        seen[source] = true;
-
+    private boolean dfs(int source) {
         if (source == destination) {
             return true;
         }
 
-        for (int neighbor : graph.get(source)) {
+        for (int neighbor : graph.getOrDefault(source, Collections.emptyList())) {
             if (seen[neighbor]) {
                 continue;
             }
 
-            valid = valid || dfs(neighbor, destination);
+            seen[neighbor] = true;
+            if (dfs(neighbor)) {
+                return true;
+            }
         }
 
-        return valid;
+        return false;
     }
 
 }
